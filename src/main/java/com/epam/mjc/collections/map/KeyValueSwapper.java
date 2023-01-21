@@ -7,13 +7,7 @@ public class KeyValueSwapper {
     public Map<String, Integer> swap(Map<Integer, String> sourceMap) {
         Map<String, Integer> stringIntegerMap = new HashMap<>();
         for (Map.Entry<Integer, String> entry: sourceMap.entrySet()) {
-            if (stringIntegerMap.containsKey(entry.getValue())) {
-                if (entry.getKey() < stringIntegerMap.get(entry.getValue())) {
-                    stringIntegerMap.put(entry.getValue(), entry.getKey());
-                    continue;
-                }
-             }
-            stringIntegerMap.put(entry.getValue(), entry.getKey());
+            stringIntegerMap.put(entry.getValue(), Math.min(entry.getKey(), stringIntegerMap.getOrDefault(entry.getValue(), Integer.MAX_VALUE)));
         }
         return stringIntegerMap;
     }
